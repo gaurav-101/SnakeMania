@@ -38,3 +38,57 @@ function isCollide(snake) {
     
     return false;
 }
+
+function gameEngine(){
+    // Part 1: Updating the snake array & Food
+    
+        //if snake is collide - 
+        if(isCollide(snakeArr)){
+            gameOverSound.play();
+            musicSound.pause();
+            inputDir =  {x: 0, y: 0}; 
+            alert("Game Over. Press any key to play again!");
+            snakeArr = [{x: 13, y: 15}];
+            musicSound.play();
+            score = 0; 
+        }
+    
+        // If you have eaten the food, increment the score and regenerate the food
+        if(snakeArr[0].y === food.y && snakeArr[0].x ===food.x){
+            foodSound.play();
+    
+            // Updating score in Html also
+            score += 1;
+            scoreBox.innerHTML = "Score: " + score;
+    
+            // Updating high score
+            if(score>hiscoreval){
+                hiscoreval = score;
+                localStorage.setItem("hiscore", JSON.stringify(hiscoreval));
+                hiscoreBox.innerHTML = "HiScore: " + hiscoreval;
+            }
+            
+    
+            // adding length to snake when he eat food
+            snakeArr.unshift({x: snakeArr[0].x + inputDir.x, y: snakeArr[0].y + inputDir.y});
+    
+            // Random coordinates for food
+            let a = 2;
+            let b = 16;
+    
+            //Math.random() select random decimals from 0 to 1
+            food = {x: Math.round(a + (b-a)* Math.random()), y: Math.round(a + (b-a)* Math.random())}
+        }
+    
+        // Moving the snake
+    
+        // we will start from second last element of snake array
+        //Basically we are shifting the position
+        for (let i = snakeArr.length - 2; i>=0; i--) { 
+            snakeArr[i+1] = {...snakeArr[i]};
+        }
+    
+        //first(index 0) element have to be move
+        snakeArr[0].x += inputDir.x;
+        snakeArr[0].y += inputDir.y;
+    
