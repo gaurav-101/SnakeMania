@@ -138,3 +138,36 @@ else{
 
 window.requestAnimationFrame(main);
 
+// Direction array changes on pressing arrow key
+window.addEventListener('keydown', e =>{       //e is the event of pressing key
+    inputDir = {x: 0, y: 1} // Start the game
+    moveSound.play();     //Playing sound on movement
+    switch (e.key) {
+        case "ArrowUp":
+            console.log("ArrowUp");
+            inputDir.x = 0;
+            inputDir.y = -1;
+            break;
+
+        case "ArrowDown":
+            console.log("ArrowDown");
+            inputDir.x = 0;
+            inputDir.y = 1;
+            break;
+
+        case "ArrowLeft":
+            console.log("ArrowLeft");
+            inputDir.x = -1;
+            inputDir.y = 0;
+            break;
+
+        case "ArrowRight":
+            console.log("ArrowRight");
+            inputDir.x = 1;
+            inputDir.y = 0;
+            break;
+        default:
+            break;
+    }
+
+});
