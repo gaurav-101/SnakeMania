@@ -15,6 +15,7 @@ food = {x: 6, y: 7};      //Initial Food Location
 
 // Game Functions
 function main(ctime) {    //current time
+    musicSound.play();
     window.requestAnimationFrame(main);
     // console.log(ctime)
     if((ctime - lastPaintTime)/1000 < 1/speed){     //reducing framerate
@@ -122,7 +123,6 @@ function gameEngine(){
 
 // Main logic starts here
 
-musicSound.play();
 // Accessing local Storage
 let hiscore = localStorage.getItem("hiscore");
 // At starting hiscore will be not there.. Hence we will set item in local storage with value 0
