@@ -12,3 +12,14 @@ let snakeArr = [
 ];
 
 food = {x: 6, y: 7};      //Initial Food Location
+
+// Game Functions
+function main(ctime) {    //current time
+    window.requestAnimationFrame(main);
+    // console.log(ctime)
+    if((ctime - lastPaintTime)/1000 < 1/speed){     //reducing framerate
+        return;
+    }
+    lastPaintTime = ctime;
+    gameEngine();
+}
