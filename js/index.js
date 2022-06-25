@@ -120,3 +120,21 @@ function gameEngine(){
 
 }
 
+// Main logic starts here
+
+musicSound.play();
+// Accessing local Storage
+let hiscore = localStorage.getItem("hiscore");
+// At starting hiscore will be not there.. Hence we will set item in local storage with value 0
+//Updating hiscore value is on line 65
+if(hiscore === null){
+    hiscoreval = 0;
+    localStorage.setItem("hiscore", JSON.stringify(hiscoreval))
+}
+else{
+    hiscoreval = JSON.parse(hiscore);
+    hiscoreBox.innerHTML = "HiScore: " + hiscore;
+}
+
+window.requestAnimationFrame(main);
+
