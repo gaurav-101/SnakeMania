@@ -91,4 +91,32 @@ function gameEngine(){
         //first(index 0) element have to be move
         snakeArr[0].x += inputDir.x;
         snakeArr[0].y += inputDir.y;
-    
+
+// Part 2: Display the snake and Food
+
+    // Display the snake
+    board.innerHTML = "";          // We want to board empty (no multiple snakes should exist at same time )
+    snakeArr.forEach((e, index)=>{           //e- snake array ka each coordinate, index is start from 0
+        snakeElement = document.createElement('div');
+        snakeElement.style.gridRowStart = e.y;
+        snakeElement.style.gridColumnStart = e.x;
+
+        if(index === 0){
+            snakeElement.classList.add('head');
+        }
+        else{
+            snakeElement.classList.add('snake');
+        }
+        board.appendChild(snakeElement);
+    });
+    // Display the food
+    // Food is an object not an array
+    foodElement = document.createElement('div');
+    foodElement.style.gridRowStart = food.y;
+    foodElement.style.gridColumnStart = food.x;
+    foodElement.classList.add('food')
+    board.appendChild(foodElement);
+
+
+}
+
